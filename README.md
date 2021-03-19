@@ -1,12 +1,12 @@
 # bumble-log
 
-## usage
+## usage:
 
-`python3 bumble-log.py`
+```
+python3 bumble-log.py
+```
 
----
-
-## input for the script
+## input for the script:
 1. path of the first logfile (e.g. bob.txt or directory/bob.txt)
 2. name of the first contact (e.g. Bob)
 3. path of the second logfile (e.g. alice.txt or directory/alice.txt)
