@@ -15,30 +15,42 @@ def parse(line, name):
     out = out.strip()
     return time, out
 
-with open(inputFile_1) as f_1:
-    with open(inputFile_2) as f_2:
-        with open(outputFile, 'w') as f_out:
-            line_1 = f_1.readline()[:-1]
-            line_2 = f_2.readline()[:-1]
-            time_1, out_1 = parse(line_1, name_1)
-            time_2, out_2 = parse(f_2.readline(), name_2)
-            while line_1 or line_2:
-                if time_1 <= time_2:
-                    f_out.write(out_1 + "\n")
-                    line_1 = f_1.readline()
-                    if(line_1):
-                        time_1, out_1 = parse(line_1, name_1)
-                    else:
-                        time_1 = datetime.datetime.max
-                else:
-                    f_out.write(out_2 + "\n")
-                    line_2 = f_2.readline()
-                    if(line_2):
-                        time_2, out_2 = parse(line_2, name_2)
-                    else:
-                        time_2 = datetime.datetime.max
-            f_out.close()
-        f_2.close()
-    f_1.close()
+def merge():
+	print("\nopening files...")
+	with open(inputFile_1) as f_1:
+		with open(inputFile_2) as f_2:
+			with open(outputFile, 'w') as f_out:
+				print("merging...")
+				line_1 = f_1.readline()[:-1]
+				line_2 = f_2.readline()[:-1]
+				time_1, out_1 = parse(line_1, name_1)
+				time_2, out_2 = parse(f_2.readline(), name_2)
+				while line_1 or line_2:
+					if time_1 <= time_2:
+						f_out.write(out_1 + "\n")
+						line_1 = f_1.readline()
+						if(line_1):
+							time_1, out_1 = parse(line_1, name_1)
+						else:
+							time_1 = datetime.datetime.max
+					else:
+						f_out.write(out_2 + "\n")
+						line_2 = f_2.readline()
+						if(line_2):
+							time_2, out_2 = parse(line_2, name_2)
+						else:
+							time_2 = datetime.datetime.max
+				f_out.close()
+			f_2.close()
+		f_1.close()
 
-print("\nresult written to " + outputFile)
+		print("\nresult written to " + outputFile)
+	
+print("\n" + inputFile_1 + " " + name_1 + " " + inputFile_2 + " " + name_2 + " " + outputFile + "\n")
+while True:
+    check = input("continue with this input? (y/n): ")
+    if check == "y":
+        merge()
+        break
+    elif check == "n":
+        break
