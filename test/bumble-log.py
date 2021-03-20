@@ -15,6 +15,18 @@ def parse(line, name):
     out = out.strip()
     return time, out
 
+def cleanup():
+    clean = open(inputFile_1).read().replace('\n', '')
+    clean = clean.replace('Me (', '\nMe (')[1:]
+    with open(inputFile_1, 'w') as f:
+        f.write(clean)
+        f.close()
+    clean = open(inputFile_2).read().replace('\n', '')
+    clean = clean.replace('Me (', '\nMe (')[1:]
+    with open(inputFile_2, 'w') as f:
+        f.write(clean)
+        f.close()
+
 def merge():
 	print("\nopening files...")
 	with open(inputFile_1) as f_1:
@@ -50,6 +62,7 @@ print("\n" + inputFile_1 + " " + name_1 + " " + inputFile_2 + " " + name_2 + " "
 while True:
     check = input("continue with this input? (y/n): ")
     if check == "y":
+        cleanup()
         merge()
         break
     elif check == "n":
